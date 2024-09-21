@@ -1,5 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Button } from "react-native";
 import * as React from "react";
 
 //screens
@@ -28,13 +29,15 @@ function App() {
           name="Home"
           component={HomeScreen}
           options={{ title: "Featured",
-            headerTitle: (props) => <HeaderLogo {...props} />
+            headerTitle: (props) => <HeaderLogo {...props}/>
            }}
         />
         <Stack.Screen
           name="Users"
           component={UsersScreen}
-          options={{ title: "User" }}
+          options={{ title: "User",
+            
+           }}
         />
         <Stack.Screen
           name="UserDetail"
