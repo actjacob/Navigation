@@ -18,7 +18,7 @@ function HomeScreen({ navigation }) {
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>{count} </Text>
       <Text>Home Screen</Text>
-      <Button title="Users" onPress={() => navigation.navigate("Users")} />
+      <Button title="Users" onPress={() => navigation.navigate("UsersTab")} />
 
     </View>
   );
