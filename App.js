@@ -4,6 +4,7 @@ import * as React from "react";
 
 //screens
 import HomeScreen from "./src/screens/Home/homepage";
+import UserDetail from "./src/screens/UserDetail/UserDetail";
 import UsersScreen from "./src/screens/Users/userspage";
 
 const Stack = createNativeStackNavigator();
@@ -11,7 +12,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Users">
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -21,6 +22,11 @@ function App() {
           name="Users"
           component={UsersScreen}
           options={{ title: "User" }}
+        />
+        <Stack.Screen
+          name="UserDetail"
+          component={UserDetail}
+          options={{ title: "Detail" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
