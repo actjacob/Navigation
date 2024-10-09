@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, View } from "react-native";
 import Item from "./item";
-
-const data = [
-  { id: 1, name: "Jacob" },
-  { id: 2, name: "Ayşe" },
-  { id: 3, name: "Fatma" },
-];
+import Loading from "../../components/Loading";
 
 const UsersScreen = () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <View style={{ flex: 1 }}>
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Item item={item} />}
-      />
+      {loading ? (
+        <Loading text="Loading..." />
+      ) : (
+        <FlatList
+          data={users}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <Item id={item.id} name={item.name} />}
+        />
+      )}
     </View>
   );
 };
