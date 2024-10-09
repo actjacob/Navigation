@@ -23,12 +23,25 @@ const UserDetail = ({ route, navigation }) => {
     });
   }, [navigation]);
 
+  // axios(`https://jsonplaceholder.typicode.com/users/${userId}`)
+  //   .then((res) => setUser(res.data))
+  //   .catch((err) => setError(err.message))
+  //   .finally(() => setLoading(false));
   useEffect(() => {
-    axios(`https://jsonplaceholder.typicode.com/usersf/${userId}`)
-      .then((res) => setUser(res.data))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+    getData(); // sakın bir () bile unutma kodun çalışmama sebebi bu
   }, [userId]);
+
+  const getData = async () => {
+    try {
+      const { data } = await axios(
+        `https://jsonplaceholder.typicode.com/users/${userId}`
+      );
+      setUser(data);
+    } catch (err) {
+      setError(err.message);
+    }
+    setLoading(false);
+  };
 
   if (loading) {
     return <Loading text="Loading User..." />;
