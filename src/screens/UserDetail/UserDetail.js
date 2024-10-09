@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import Loading from "../../components/Loading";
+import axios from "axios";
 
 const UserDetail = ({ route, navigation }) => {
   const { id } = route.params;
@@ -21,9 +22,8 @@ const UserDetail = ({ route, navigation }) => {
   }, [navigation]);
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
-      .then((res) => res.json())
-      .then((data) => setUser(data))
+    axios(`https://jsonplaceholder.typicode.com/users/${userId}`)
+      .then((res) => setUser(res.data))
       .finally(() => setLoading(false));
   }, [userId]);
 
